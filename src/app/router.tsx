@@ -4,6 +4,7 @@ import { RegisterCompanyPage } from '@/features/auth/RegisterCompanyPage';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { AppLayout } from '@/app/layout/AppLayout';
 import { DashboardPage } from '@/features/dashboard/DashboardPage';
+import { EmployeesPage } from '@/features/employees/EmployeesPage';
 import { ComingSoonPage } from '@/components/ComingSoonPage';
 
 export function AppRouter() {
@@ -19,7 +20,7 @@ export function AppRouter() {
         }
       >
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/employees" element={<ComingSoonPage title="Employees" />} />
+        <Route path="/employees" element={<EmployeesPage />} />
         <Route path="/attendance" element={<ComingSoonPage title="Attendance" />} />
         <Route path="/leave" element={<ComingSoonPage title="Leave" />} />
         <Route path="/payroll" element={<ComingSoonPage title="Payroll" />} />

@@ -18,7 +18,7 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Dashboard', to: '/', icon: DashboardIcon },
-  { label: 'Employees', to: '/employees', icon: PeopleIcon, upcoming: true },
+  { label: 'Employees', to: '/employees', icon: PeopleIcon },
   { label: 'Attendance', to: '/attendance', icon: AccessTimeIcon, upcoming: true },
   { label: 'Leave', to: '/leave', icon: EventNoteIcon, upcoming: true },
   { label: 'Payroll', to: '/payroll', icon: PaymentsIcon, roles: ['COMPANY_ADMIN', 'PAYROLL_MANAGER'], upcoming: true },
