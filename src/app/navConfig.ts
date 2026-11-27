@@ -3,7 +3,11 @@ import PeopleIcon from '@mui/icons-material/PeopleAltOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTimeOutlined';
 import EventNoteIcon from '@mui/icons-material/EventNoteOutlined';
 import PaymentsIcon from '@mui/icons-material/PaymentsOutlined';
-import SettingsIcon from '@mui/icons-material/SettingsOutlined';
+import WorkIcon from '@mui/icons-material/WorkOutline';
+import TrendingUpIcon from '@mui/icons-material/TrendingUpOutlined';
+import ReceiptIcon from '@mui/icons-material/ReceiptLongOutlined';
+import DevicesIcon from '@mui/icons-material/DevicesOutlined';
+import SupportIcon from '@mui/icons-material/SupportAgentOutlined';
 import type { SvgIconComponent } from '@mui/icons-material';
 
 export interface NavItem {
@@ -19,10 +23,14 @@ export interface NavItem {
 export const NAV_ITEMS: NavItem[] = [
   { label: 'Dashboard', to: '/', icon: DashboardIcon },
   { label: 'Employees', to: '/employees', icon: PeopleIcon },
-  { label: 'Attendance', to: '/attendance', icon: AccessTimeIcon, upcoming: true },
+  { label: 'Attendance', to: '/attendance', icon: AccessTimeIcon },
   { label: 'Leave', to: '/leave', icon: EventNoteIcon },
-  { label: 'Payroll', to: '/payroll', icon: PaymentsIcon, roles: ['COMPANY_ADMIN', 'PAYROLL_MANAGER'], upcoming: true },
-  { label: 'Settings', to: '/settings', icon: SettingsIcon, roles: ['COMPANY_ADMIN'], upcoming: true },
+  { label: 'Payroll', to: '/payroll', icon: PaymentsIcon, roles: ['COMPANY_ADMIN', 'PAYROLL_MANAGER', 'FINANCE_MANAGER'] },
+  { label: 'Recruitment', to: '/recruitment', icon: WorkIcon, roles: ['COMPANY_ADMIN', 'HR_MANAGER', 'RECRUITER'] },
+  { label: 'Performance', to: '/performance', icon: TrendingUpIcon },
+  { label: 'Expenses', to: '/expense', icon: ReceiptIcon },
+  { label: 'Assets', to: '/assets', icon: DevicesIcon },
+  { label: 'Helpdesk', to: '/helpdesk', icon: SupportIcon },
 ];
 
 export function visibleNav(roles: string[]): NavItem[] {

@@ -6,7 +6,13 @@ import { AppLayout } from '@/app/layout/AppLayout';
 import { DashboardPage } from '@/features/dashboard/DashboardPage';
 import { EmployeesPage } from '@/features/employees/EmployeesPage';
 import { LeavePage } from '@/features/leave/LeavePage';
-import { ComingSoonPage } from '@/components/ComingSoonPage';
+import { AttendancePage } from '@/features/attendance/AttendancePage';
+import { PayrollPage } from '@/features/payroll/PayrollPage';
+import { RecruitmentPage } from '@/features/recruitment/RecruitmentPage';
+import { PerformancePage } from '@/features/performance/PerformancePage';
+import { ExpensePage } from '@/features/expense/ExpensePage';
+import { AssetPage } from '@/features/asset/AssetPage';
+import { HelpdeskPage } from '@/features/helpdesk/HelpdeskPage';
 
 export function AppRouter() {
   return (
@@ -22,10 +28,14 @@ export function AppRouter() {
       >
         <Route path="/" element={<DashboardPage />} />
         <Route path="/employees" element={<EmployeesPage />} />
-        <Route path="/attendance" element={<ComingSoonPage title="Attendance" />} />
+        <Route path="/attendance" element={<AttendancePage />} />
         <Route path="/leave" element={<LeavePage />} />
-        <Route path="/payroll" element={<ComingSoonPage title="Payroll" />} />
-        <Route path="/settings" element={<ComingSoonPage title="Settings" />} />
+        <Route path="/payroll" element={<PayrollPage />} />
+        <Route path="/recruitment" element={<RecruitmentPage />} />
+        <Route path="/performance" element={<PerformancePage />} />
+        <Route path="/expense" element={<ExpensePage />} />
+        <Route path="/assets" element={<AssetPage />} />
+        <Route path="/helpdesk" element={<HelpdeskPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
