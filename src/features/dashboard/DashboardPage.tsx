@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, Stack, Typography } from '@mui/material';
 import { useAuthStore } from '@/stores/authStore';
+import { DashboardCalendar } from '@/features/calendar/DashboardCalendar';
 
 interface StatCardProps {
   label: string;
@@ -52,6 +53,8 @@ export function DashboardPage() {
         <StatCard label="On leave" value="—" hint="Leave module — coming soon" />
         <StatCard label="Plan" value="Trial" hint="14-day free trial active" />
       </Box>
+      <DashboardCalendar />
+
       <Card elevation={0} sx={{ border: '1px solid', borderColor: 'divider' }}>
         <CardContent>
           <Typography variant="h6" gutterBottom>
