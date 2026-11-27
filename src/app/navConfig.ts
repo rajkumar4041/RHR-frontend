@@ -9,6 +9,7 @@ import ReceiptIcon from '@mui/icons-material/ReceiptLongOutlined';
 import DevicesIcon from '@mui/icons-material/DevicesOutlined';
 import SupportIcon from '@mui/icons-material/SupportAgentOutlined';
 import CreditCardIcon from '@mui/icons-material/CreditCardOutlined';
+import ShieldIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import type { SvgIconComponent } from '@mui/icons-material';
 
 export interface NavItem {
@@ -33,6 +34,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Assets', to: '/assets', icon: DevicesIcon },
   { label: 'Helpdesk', to: '/helpdesk', icon: SupportIcon },
   { label: 'Billing', to: '/billing', icon: CreditCardIcon, roles: ['COMPANY_ADMIN', 'FINANCE_MANAGER'] },
+  { label: 'Platform', to: '/platform', icon: ShieldIcon, roles: ['SUPER_ADMIN'] },
 ];
 
 export function visibleNav(roles: string[]): NavItem[] {

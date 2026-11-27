@@ -14,6 +14,7 @@ import { ExpensePage } from '@/features/expense/ExpensePage';
 import { AssetPage } from '@/features/asset/AssetPage';
 import { HelpdeskPage } from '@/features/helpdesk/HelpdeskPage';
 import { BillingPage } from '@/features/billing/BillingPage';
+import { PlatformDashboardPage } from '@/features/platform/PlatformDashboardPage';
 
 export function AppRouter() {
   return (
@@ -38,6 +39,7 @@ export function AppRouter() {
         <Route path="/assets" element={<AssetPage />} />
         <Route path="/helpdesk" element={<HelpdeskPage />} />
         <Route path="/billing" element={<BillingPage />} />
+        <Route path="/platform" element={<PlatformDashboardPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
