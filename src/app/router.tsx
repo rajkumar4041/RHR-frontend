@@ -15,6 +15,8 @@ import { AssetPage } from '@/features/asset/AssetPage';
 import { HelpdeskPage } from '@/features/helpdesk/HelpdeskPage';
 import { BillingPage } from '@/features/billing/BillingPage';
 import { PlatformDashboardPage } from '@/features/platform/PlatformDashboardPage';
+import { ReportsPage } from '@/features/reports/ReportsPage';
+import { SecurityPage } from '@/features/security/SecurityPage';
 
 export function AppRouter() {
   return (
@@ -40,6 +42,8 @@ export function AppRouter() {
         <Route path="/helpdesk" element={<HelpdeskPage />} />
         <Route path="/billing" element={<BillingPage />} />
         <Route path="/platform" element={<PlatformDashboardPage />} />
+        <Route path="/reports" element={<ReportsPage />} />
+        <Route path="/security" element={<SecurityPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

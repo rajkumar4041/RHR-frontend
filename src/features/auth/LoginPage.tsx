@@ -11,7 +11,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-import { useLogin } from './authApi';
+import { useLogin, useVerifyMfa } from './authApi';
 import { errorMessage } from '@/lib/axios';
 import { AuthShell } from './AuthShell';
 
@@ -24,7 +24,10 @@ const schema = Yup.object({
 export function LoginPage() {
   const navigate = useNavigate();
   const login = useLogin();
+  const verifyMfa = useVerifyMfa();
   const [serverError, setServerError] = useState<string | null>(null);
+  const [mfaToken, setMfaToken] = useState<string | null>(null);
+  const [mfaCode, setMfaCode] = useState('');
 
   const formik = useFormik({
     initialValues: { companySlug: '', email: '', password: '' },
@@ -32,17 +35,58 @@ export function LoginPage() {
     onSubmit: async (values) => {
       setServerError(null);
       try {
-        await login.mutateAsync({
+        const result = await login.mutateAsync({
           companySlug: values.companySlug.trim() || undefined,
           email: values.email.trim(),
           password: values.password,
         });
-        navigate('/');
+        if (result.mfaRequired && result.mfaToken) {
+          setMfaToken(result.mfaToken);
+        } else {
+          navigate('/');
+        }
       } catch (err) {
         setServerError(errorMessage(err, 'Login failed'));
       }
     },
   });
+
+  const submitMfa = async () => {
+    if (!mfaToken) return;
+    setServerError(null);
+    try {
+      await verifyMfa.mutateAsync({ mfaToken, code: mfaCode.trim() });
+      navigate('/');
+    } catch (err) {
+      setServerError(errorMessage(err, 'Verification failed'));
+    }
+  };
+
+  if (mfaToken) {
+    return (
+      <AuthShell title="Two-factor authentication" subtitle="Enter the 6-digit code from your authenticator app">
+        <Box component="form" onSubmit={(e) => { e.preventDefault(); void submitMfa(); }} noValidate>
+          <Stack spacing={2.5}>
+            {serverError && <Alert severity="error">{serverError}</Alert>}
+            <TextField
+              label="Authentication code"
+              value={mfaCode}
+              onChange={(e) => setMfaCode(e.target.value)}
+              inputProps={{ inputMode: 'numeric', maxLength: 6 }}
+              autoFocus
+              fullWidth
+            />
+            <Button type="submit" variant="contained" size="large" disabled={verifyMfa.isPending || mfaCode.length < 6}>
+              {verifyMfa.isPending ? 'Verifying…' : 'Verify'}
+            </Button>
+            <Button color="inherit" onClick={() => { setMfaToken(null); setMfaCode(''); }}>
+              Back to login
+            </Button>
+          </Stack>
+        </Box>
+      </AuthShell>
+    );
+  }
 
   return (
     <AuthShell title="Welcome back" subtitle="Sign in to your RHR workspace">

@@ -39,7 +39,19 @@ export interface CurrentUser {
   firstName: string;
   lastName: string;
   platformAdmin: boolean;
+  mfaEnabled: boolean;
   roles: string[];
+}
+
+export interface LoginResult {
+  mfaRequired: boolean;
+  mfaToken: string | null;
+  tokens: TokenResponse | null;
+}
+
+export interface MfaSetup {
+  secret: string;
+  otpAuthUri: string;
 }
 
 export interface LoginPayload {

@@ -19,9 +19,11 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LogoutIcon from '@mui/icons-material/LogoutOutlined';
+import SecurityIcon from '@mui/icons-material/SecurityOutlined';
 import { useAuthStore } from '@/stores/authStore';
 import { useQueryClient } from '@tanstack/react-query';
 import { visibleNav } from '@/app/navConfig';
+import { NotificationBell } from '@/features/notifications/NotificationBell';
 
 const DRAWER_WIDTH = 248;
 
@@ -99,6 +101,7 @@ export function AppLayout() {
             <MenuIcon />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
+          <NotificationBell />
           <IconButton onClick={(e) => setAnchorEl(e.currentTarget)} size="small">
             <Avatar sx={{ bgcolor: 'primary.main', width: 36, height: 36, fontSize: 14 }}>
               {initials}
@@ -114,6 +117,16 @@ export function AppLayout() {
               </Typography>
             </Box>
             <Divider />
+            <MenuItem
+              component={RouterLink}
+              to="/security"
+              onClick={() => setAnchorEl(null)}
+            >
+              <ListItemIcon>
+                <SecurityIcon fontSize="small" />
+              </ListItemIcon>
+              Security
+            </MenuItem>
             <MenuItem onClick={handleLogout}>
               <ListItemIcon>
                 <LogoutIcon fontSize="small" />
